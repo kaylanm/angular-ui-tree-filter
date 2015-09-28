@@ -24,7 +24,7 @@
         })
     /**
      * @ngdoc function
-     * @name project.factory:projectWbsFilter
+     * @name ui.tree-filter.factory:uiTreeFilter
      */
         .filter('uiTreeFilter', ["uiTreeFilterSettings", function (uiTreeFilterSettings) {
             /**
@@ -56,6 +56,11 @@
              */
             function resolveAddress(object, path) {
                 var parts = path.split('.');
+
+                if (object === undefined) {
+                    return;
+                }
+
                 return parts.length < 2 ? object[parts[0]] : resolveAddress(object[parts[0]], parts.slice(1).join('.'));
             }
 
